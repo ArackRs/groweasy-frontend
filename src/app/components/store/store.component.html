@@ -1,0 +1,70 @@
+<div class="container">
+  <aside class="sidebar">
+    <h2 class="logo">GROWEASY</h2>
+    <nav>
+      <ul>
+        <li><a href="/home">Home</a></li>
+        <li><a href="/analysis">Analysis</a></li>
+        <li><a href="/profile">Profile</a></li>
+        <li><a href="/store">Store</a></li>
+      </ul>
+    </nav>
+    <button class="logout-button" routerLink="/login">log out</button>
+  </aside>
+
+  <main class="content">
+    <mat-card class="user-card" routerLink="/profile">
+      <mat-card-header>
+        <div mat-card-avatar class="user-image"></div>
+        <mat-card-title>{{user?.fullName}}</mat-card-title>
+        <mat-card-subtitle>{{user?.role}}</mat-card-subtitle>
+      </mat-card-header>
+    </mat-card>
+
+    <section class="sensors-section">
+      <h2>Nuestros Productos: Sensores IOT para la Agricultura</h2>
+      <div class="sensor-grid">
+        <!-- Card del sensor -->
+        <mat-card class="sensor-item">
+          <img src="https://image.made-in-china.com/202f0j00IjcbFliylYkW/Handheld-Agriculture-Soil-Moisture-Temperature-and-Moisture-Sensor-for-Agriculture-Greenhouse.webp" alt="Sensor de Temperatura">
+          <mat-card-content>
+            <h3 class="sensor-title">Sensor de Temperatura</h3>
+            <p class="status">$15</p>
+            <p class="description">Mide la temperatura de manera precisa y en tiempo real, ideal para proyectos de automatización y monitoreo ambiental.</p>
+          </mat-card-content>
+        </mat-card>
+
+        <!-- Puedes replicar este bloque para más sensores -->
+        <mat-card class="sensor-item">
+          <img src="https://m.media-amazon.com/images/I/41gs1jMVs6S._AC_UF1000,1000_QL80_.jpg" alt="Sensor de Humedad">
+          <mat-card-content>
+            <h3 class="sensor-title">Sensor de Humedad</h3>
+            <p class="status">$15</p>
+            <p class="description">Capta la humedad ambiental, perfecto para invernaderos, sistemas de riego y control climático.</p>
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card class="sensor-item">
+          <img src="https://www.kusitest.pe/sites/default/files/tool/image/Medidor%20de%20pH%20de%20suelo%2C%20medici%C3%B3n%20de%20temperatura%20y%20humedad%20de%20suelo%2C%20peachimetro%20de%20suelo%20para%20agricultura%20precio%20en%20Peru%2C%20PH-328.%20-Kusitest%20-7.jpg" alt="Sensor de PH">
+          <mat-card-content>
+            <h3 class="sensor-title">Sensor de PH</h3>
+            <p class="status">$18</p>
+            <p class="description">Evalúa el nivel de pH en líquidos, esencial para aplicaciones en agricultura, acuicultura y laboratorios.</p>
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card class="sensor-item">
+          <img src="https://www.cotecno.cl/wp-content/uploads/2021/08/B-01-05-02-03.png" alt="Sensor de Clima">
+          <mat-card-content>
+            <h3 class="sensor-title">Sensor de Climatología</h3>
+            <p class="status">$21</p>
+            <p class="description">Monitorea múltiples parámetros climáticos, incluyendo temperatura, humedad y presión, ideal para estaciones meteorológicas.</p>
+          </mat-card-content>
+        </mat-card>
+
+      </div>
+    </section>
+
+  </main>
+
+</div>

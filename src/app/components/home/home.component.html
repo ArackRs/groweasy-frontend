@@ -1,0 +1,64 @@
+<div class="container">
+  <aside class="sidebar">
+    <h2 class="logo">GROWEASY</h2>
+    <nav>
+      <ul>
+        <li><a href="/analysis">Analysis</a></li>
+        <li><a href="/profile">Profile</a></li>
+        <li><a href="/store">Store</a></li>
+      </ul>
+    </nav>
+    <button class="logout-button" routerLink="/login">log out</button>
+  </aside>
+
+  <main class="content">
+    <mat-card class="user-card" (click)="toggleDevice()">
+      @if (connectedDevice) {
+        <mat-card-header>
+          <div mat-card-avatar class="on-device-image"></div>
+          <mat-card-title>{{ connectedDevice?.location }}</mat-card-title>
+          <mat-card-subtitle>{{ connectedDevice?.status }}</mat-card-subtitle>
+        </mat-card-header>
+      } @else {
+        <mat-card-header>
+          <div mat-card-avatar class="off-device-image"></div>
+          <mat-card-title>Dispositivo no conectado</mat-card-title>
+          <mat-card-subtitle>Conecta un dispositivo para ver su información</mat-card-subtitle>
+        </mat-card-header>
+      }
+    </mat-card>
+
+    <section class="sensors-section">
+      <h2>Sensores IOT</h2>
+      <div class="sensor-grid">
+        <!-- Card del sensor -->
+        @for (sensor of sensors; track sensor.id) {
+          <mat-card class="sensor-item" (click)="toggleModal(sensor)">
+            <img src="https://image.made-in-china.com/202f0j00IjcbFliylYkW/Handheld-Agriculture-Soil-Moisture-Temperature-and-Moisture-Sensor-for-Agriculture-Greenhouse.webp" alt="Sensor de Temperatura">
+            <img src="https://m.media-amazon.com/images/I/41gs1jMVs6S._AC_UF1000,1000_QL80_.jpg" alt="Sensor de Humedad">
+            <img src="https://www.kusitest.pe/sites/default/files/tool/image/Medidor%20de%20pH%20de%20suelo%2C%20medici%C3%B3n%20de%20temperatura%20y%20humedad%20de%20suelo%2C%20peachimetro%20de%20suelo%20para%20agricultura%20precio%20en%20Peru%2C%20PH-328.%20-Kusitest%20-7.jpg" alt="Sensor de PH">
+
+            <mat-card-content>
+              <h3 class="sensor-title">{{ sensor.type }}</h3>
+              <p class="status" [ngStyle]="{'color':'green'}">{{ sensor.status }}</p>
+            </mat-card-content>
+          </mat-card>
+        } @empty {
+          <p>No hay sensores disponibles</p>
+        }
+      </div>
+    </section>
+
+    <app-floating-box
+      [show]="showModal"
+      [sensor]="selectedSensor"
+      (close)="toggleModal(selectedSensor)" />
+
+    <app-devices [show]="showDevice" (close)="toggleDevice()"></app-devices>
+    <app-devices
+      [show]="showDevice"
+      (close)="toggleDevice()"
+      (deviceSelected)="handleDeviceSelected($event)">
+    </app-devices>
+  </main>
+</div>

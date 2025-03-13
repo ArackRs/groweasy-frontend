@@ -1,0 +1,18 @@
+<div class="modal" *ngIf="show">
+  <div class="modal-content">
+    <span class="close-button" (click)="closeModal()">&times;</span>
+    <h2>Dispositivos IOT</h2>
+
+    <div class="devices">
+      <div *ngFor="let device of devices">
+        <div class="device">
+          <h3>{{device.location}}</h3>
+          <p>{{device.macAddress}}</p>
+          <input type="checkbox" [(ngModel)]="device.selected">
+        </div>
+      </div>
+    </div>
+
+    <button (click)="acceptChanges()">Conectar</button>
+  </div>
+</div>
