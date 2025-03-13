@@ -14,20 +14,19 @@ import {AuthService} from '../../services/auth.service';
 import {UserService} from '../../services/user.service';
 
 @Component({
-  selector: 'app-store',
-  standalone: true,
-  imports: [
-    RouterLink,
-    MatCard,
-    MatCardAvatar,
-    MatCardHeader,
-    MatCardSubtitle,
-    MatCardTitle,
-    MatCardContent,
-    NgStyle
-  ],
-  templateUrl: './store.component.html',
-  styleUrl: './store.component.css'
+    selector: 'app-store',
+    imports: [
+        RouterLink,
+        MatCard,
+        MatCardAvatar,
+        MatCardHeader,
+        MatCardSubtitle,
+        MatCardTitle,
+        MatCardContent,
+        NgStyle
+    ],
+    templateUrl: './store.component.html',
+    styleUrl: './store.component.css'
 })
 export class StoreComponent {
   user: User | null = null;

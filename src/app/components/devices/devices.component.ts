@@ -11,15 +11,14 @@ interface SelectableDevice extends Device {
 }
 
 @Component({
-  selector: 'app-devices',
-  standalone: true,
-  imports: [
-    FormsModule,
-    NgIf,
-    NgForOf
-  ],
-  templateUrl: './devices.component.html',
-  styleUrl: './devices.component.css'
+    selector: 'app-devices',
+    imports: [
+        FormsModule,
+        NgIf,
+        NgForOf
+    ],
+    templateUrl: './devices.component.html',
+    styleUrl: './devices.component.css'
 })
 export class DevicesComponent implements OnInit {
   @Input() show = false;

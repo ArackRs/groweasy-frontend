@@ -7,14 +7,13 @@ import {Config} from '../../model/config';
 import {SensorService} from '../../services/sensor.service';
 
 @Component({
-  selector: 'app-floating-box',
-  standalone: true,
-  imports: [
-    NgIf,
-    FormsModule
-  ],
-  templateUrl: './floating-box.component.html',
-  styleUrl: './floating-box.component.css'
+    selector: 'app-floating-box',
+    imports: [
+        NgIf,
+        FormsModule
+    ],
+    templateUrl: './floating-box.component.html',
+    styleUrl: './floating-box.component.css'
 })
 export class FloatingBoxComponent implements OnInit {
   @Input() show = false;

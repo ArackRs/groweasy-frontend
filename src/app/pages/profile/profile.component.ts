@@ -6,15 +6,14 @@ import {User} from '../../model/user';
 import {AuthService} from '../../services/auth.service';
 
 @Component({
-  selector: 'app-profile',
-  standalone: true,
-  imports: [
-    RouterLink,
-    MatCard,
-    MatCardContent
-  ],
-  templateUrl: './profile.component.html',
-  styleUrl: './profile.component.css'
+    selector: 'app-profile',
+    imports: [
+        RouterLink,
+        MatCard,
+        MatCardContent
+    ],
+    templateUrl: './profile.component.html',
+    styleUrl: './profile.component.css'
 })
 export class ProfileComponent implements OnInit {
 

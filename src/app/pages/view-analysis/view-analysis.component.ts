@@ -5,13 +5,12 @@ import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 
 @Component({
-  selector: 'app-view-analysis',
-  standalone: true,
-  imports: [
-    BaseChartDirective
-  ],
-  templateUrl: './view-analysis.component.html',
-  styleUrls: ['./view-analysis.component.css']
+    selector: 'app-view-analysis',
+    imports: [
+        BaseChartDirective
+    ],
+    templateUrl: './view-analysis.component.html',
+    styleUrls: ['./view-analysis.component.css']
 })
 export class ViewAnalysisComponent {
   public doughnutChartLabels: string[] = ['Humedad', 'Temperatura', 'Luminosidad'];

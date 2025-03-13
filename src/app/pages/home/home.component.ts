@@ -11,20 +11,19 @@ import {Sensor} from '../../model/sensor';
 import {DevicesComponent} from '../../components/devices/devices.component';
 
 @Component({
-  selector: 'app-home',
-  standalone: true,
-  imports: [
-    RouterLink,
-    MatCard,
-    MatCardHeader,
-    MatCardAvatar,
-    MatCardModule,
-    NgStyle,
-    FloatingBoxComponent,
-    DevicesComponent
-  ],
-  templateUrl: './home.component.html',
-  styleUrls: ['home.component.css']
+    selector: 'app-home',
+    imports: [
+        RouterLink,
+        MatCard,
+        MatCardHeader,
+        MatCardAvatar,
+        MatCardModule,
+        NgStyle,
+        FloatingBoxComponent,
+        DevicesComponent
+    ],
+    templateUrl: './home.component.html',
+    styleUrls: ['home.component.css']
 })
 export class HomeComponent implements OnInit {
   showModal = false;

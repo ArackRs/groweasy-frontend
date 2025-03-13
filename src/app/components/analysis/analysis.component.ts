@@ -7,19 +7,18 @@ import {AuthService} from '../../services/auth.service';
 import {UserService} from '../../services/user.service';
 
 @Component({
-  selector: 'app-analysis',
-  standalone: true,
-  imports: [
-    MatCard,
-    MatCardAvatar,
-    MatCardHeader,
-    MatCardSubtitle,
-    MatCardTitle,
-    RouterLink,
-    ViewAnalysisComponent
-  ],
-  templateUrl: './analysis.component.html',
-  styleUrl: './analysis.component.css'
+    selector: 'app-analysis',
+    imports: [
+        MatCard,
+        MatCardAvatar,
+        MatCardHeader,
+        MatCardSubtitle,
+        MatCardTitle,
+        RouterLink,
+        ViewAnalysisComponent
+    ],
+    templateUrl: './analysis.component.html',
+    styleUrl: './analysis.component.css'
 })
 export class AnalysisComponent {
 

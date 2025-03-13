@@ -19,22 +19,21 @@ import {AuthService} from '../../services/auth.service';
 import {SignUp} from '../../model/sign-up';
 
 @Component({
-  selector: 'app-register',
-  standalone: true,
-  imports: [
-    MatFormFieldModule,
-    MatInputModule,
-    MatIconModule,
-    MatButtonModule,
-    ReactiveFormsModule,
-    RouterModule,
-    NgIf,
-    MatSnackBarModule,
-    MatSelect,
-    MatOption,
-  ],
-  templateUrl: './register.component.html',
-  styleUrl: './register.component.css'
+    selector: 'app-register',
+    imports: [
+        MatFormFieldModule,
+        MatInputModule,
+        MatIconModule,
+        MatButtonModule,
+        ReactiveFormsModule,
+        RouterModule,
+        NgIf,
+        MatSnackBarModule,
+        MatSelect,
+        MatOption,
+    ],
+    templateUrl: './register.component.html',
+    styleUrl: './register.component.css'
 })
 export class RegisterComponent {
   hide = true;
