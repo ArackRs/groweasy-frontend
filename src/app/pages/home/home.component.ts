@@ -2,13 +2,13 @@ import {Component, OnInit} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {MatCard, MatCardAvatar, MatCardHeader, MatCardModule} from '@angular/material/card';
 import {NgStyle} from '@angular/common';
-import {FloatingBoxComponent} from '../floating-box/floating-box.component';
+import {FloatingBoxComponent} from '../../components/floating-box/floating-box.component';
 import {User} from '../../model/user';
 import {UserService} from '../../services/user.service';
 import {DeviceService} from '../../services/device.service';
 import {Device} from '../../model/device';
 import {Sensor} from '../../model/sensor';
-import {DevicesComponent} from '../devices/devices.component';
+import {DevicesComponent} from '../../components/devices/devices.component';
 
 @Component({
   selector: 'app-home',

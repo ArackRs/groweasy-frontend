@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {MatCard, MatCardAvatar, MatCardHeader, MatCardSubtitle, MatCardTitle} from "@angular/material/card";
 import {RouterLink} from "@angular/router";
-import {ViewAnalysisComponent} from '../view-analysis/view-analysis.component';
+import {ViewAnalysisComponent} from '../../pages/view-analysis/view-analysis.component';
 import {User} from '../../model/user';
 import {AuthService} from '../../services/auth.service';
 import {UserService} from '../../services/user.service';
