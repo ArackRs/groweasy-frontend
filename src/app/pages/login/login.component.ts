@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import {FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule} from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -9,27 +9,41 @@ import {MatRadioButton} from '@angular/material/radio';
 import {Router, RouterLink} from '@angular/router';
 import {SignIn} from '../../model/sign-in';
 import {AuthService} from '../../services/auth.service';
+import {FloatLabel} from 'primeng/floatlabel';
+import {NgClass, NgIf} from '@angular/common';
+import {Password} from 'primeng/password';
+import {InputText} from 'primeng/inputtext';
+import {Button} from 'primeng/button';
+import {AuthFormComponent} from '../../layouts/auth-form/auth-form.component';
 
 @Component({
     selector: 'app-login',
-    imports: [
-        ReactiveFormsModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatButtonModule,
-        MatIconModule,
-        MatButtonToggle,
-        MatRadioButton,
-        MatButtonToggleGroup,
-        RouterLink
-    ],
+  imports: [
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatIconModule,
+    MatButtonToggle,
+    MatRadioButton,
+    MatButtonToggleGroup,
+    RouterLink,
+    FloatLabel,
+    FormsModule,
+    NgIf,
+    NgClass,
+    Password,
+    InputText,
+    Button,
+    AuthFormComponent
+  ],
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
   form: FormGroup;
-  hide = true;
-  credentials: SignIn | null = null;
+  loadingSignUp: boolean = false;
+  isSubmitting: boolean = false;
 
   constructor(
     private readonly authService: AuthService,
@@ -44,16 +58,14 @@ export class LoginComponent {
 
   public onSubmit(): void {
     if (this.form.valid) {
-
-      this.credentials = {
+      const credentials: SignIn = {
         username: this.form.value.username,
         password: this.form.value.password
       };
 
-      this.authService.signIn(this.credentials).subscribe({
+      this.authService.signIn(credentials).subscribe({
         next: () => {
-          this.router.navigate(['/home'])
-            .then(r => console.log('Redirection a /home:', r));
+          this.router.navigate(['/home']).then(r => console.log('Redirection a /home:', r));
         },
         error: (error) => {
           console.error('Error al iniciar sesión:', error);
@@ -63,16 +75,5 @@ export class LoginComponent {
       console.error('Formulario no válido');
     }
   }
-  // constructor(private fb: FormBuilder, private router: Router) {
-  //   this.form = this.fb.group({
-  //     email: ['', [Validators.required, Validators.email]],
-  //     password: ['', Validators.required]
-  //   });
-  // }
-  //
-  // logIn(): void {
-  //   if (this.form.valid) {
-  //     this.router.navigate(['/home']);
-  //   }
-  // }
 }
+

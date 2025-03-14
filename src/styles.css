@@ -1,2 +1,11 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
+input {
+  width: 100% !important;
+}
+
+h1 {
+  @apply text-3xl font-bold;
+}

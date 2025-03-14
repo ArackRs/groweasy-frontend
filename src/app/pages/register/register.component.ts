@@ -17,74 +17,86 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import {MatOption, MatSelect} from '@angular/material/select';
 import {AuthService} from '../../services/auth.service';
 import {SignUp} from '../../model/sign-up';
+import {FloatLabel} from 'primeng/floatlabel';
+import {Button} from 'primeng/button';
+import {InputText} from 'primeng/inputtext';
+import {Password} from 'primeng/password';
+import {AuthFormComponent} from '../../layouts/auth-form/auth-form.component';
+import {DropdownModule} from 'primeng/dropdown';
+import {Select} from 'primeng/select';
 
 @Component({
     selector: 'app-register',
-    imports: [
-        MatFormFieldModule,
-        MatInputModule,
-        MatIconModule,
-        MatButtonModule,
-        ReactiveFormsModule,
-        RouterModule,
-        NgIf,
-        MatSnackBarModule,
-        MatSelect,
-        MatOption,
-    ],
+  imports: [
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+    MatButtonModule,
+    ReactiveFormsModule,
+    RouterModule,
+    NgIf,
+    FloatLabel,
+    Button,
+    InputText,
+    Password,
+    AuthFormComponent,
+    DropdownModule,
+    Select,
+  ],
     templateUrl: './register.component.html',
     styleUrl: './register.component.css'
 })
 export class RegisterComponent {
-  hide = true;
   form: FormGroup;
-  register: SignUp | null = null;
-  isEmailValid = true;
+  loadingSignUp: boolean = false;
+  isSubmitting: boolean = false;
+  roles = [
+    { label: 'Agricultor Experimentado', value: 'EXPERT' },
+    { label: 'Aficionado', value: 'AMATEUR' }
+  ];
 
   constructor(
-    private readonly authService: AuthService,
-    private readonly formBuilder: FormBuilder,
-    private readonly router: Router
+    private formBuilder: FormBuilder,
+    private authService: AuthService,
+    private router: Router
   ) {
-
     this.form = this.formBuilder.group({
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],
       username: ['', Validators.required],
-      password: ['', Validators.required],
-      role: ['', Validators.required]
+      role: ['', Validators.required],
+      password: ['', Validators.required]
     });
   }
 
   public onSubmit(): void {
-    if (this.form.valid) {
-      // Crear el objeto register con los valores del formulario
-      this.register = {
-        firstName: this.form.get('firstname')?.value,
-        lastName: this.form.get('lastname')?.value,
-        username: this.form.get('username')?.value,
-        password: this.form.get('password')?.value,
-        role: this.form.get('role')?.value
-      };
-
-      console.log('Registro:', this.register);
-      this.authService.signUp(this.register).subscribe({
-        next: () => {
-          this.router.navigate(['/home'])
-            .then(r => console.log('Redirection a /home:', r));
-        },
-        error: (error) => {
-          console.error('Error en el registro:', error);
-          alert('Error en el registro. Por favor, intente de nuevo.');
-        }
-      });
-    } else {
-      console.error('Formulario no válido');
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      return;
     }
-  }
 
-  public checkEmailValidity(): void {
-    const emailControl = this.form.get('username');
-    this.isEmailValid = emailControl ? emailControl.valid : false;
+    this.isSubmitting = true;
+    this.loadingSignUp = true;
+
+    const register: SignUp = {
+      firstName: this.form.value.firstname,
+      lastName: this.form.value.lastname,
+      username: this.form.value.username,
+      role: this.form.value.role.value,
+      password: this.form.value.password
+    }
+
+    console.log('Registrando:', register);
+
+    this.authService.signUp(register).subscribe({
+      next: () => {
+        this.router.navigate(['/home']).then(() => console.log('Registro exitoso, redirigiendo...'));
+      },
+      error: (error) => {
+        console.error('Error en el registro:', error);
+        this.isSubmitting = false;
+        this.loadingSignUp = false;
+      }
+    });
   }
 }
