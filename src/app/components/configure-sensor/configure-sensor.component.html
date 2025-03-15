@@ -1,0 +1,24 @@
+<p-dialog header="{{ sensor?.type }} SENSOR" [(visible)]="visible" [modal]="true"
+          [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [style]="{ width: '30vw' }"
+          [draggable]="false" [resizable]="false">
+  <form [formGroup]="formGroup" class="flex flex-col gap-4">
+    <p class="text-lg text-secondary-soft font-medium text-center pt-8">Minimum and Maximum Range {{sensor?.id}}</p>
+    <div class="flex justify-between text-secondary-soft">
+      <span>Min: {{ formGroup.get('range')?.value[0] }}°</span>
+      <span>Max: {{ formGroup.get('range')?.value[1] }}°</span>
+    </div>
+    <p-slider styleClass="my-4" formControlName="range" [range]="true" [min]="0" [max]="30" (onChange)="enableButton()" />
+
+    <p class="text-lg text-secondary-soft font-medium text-center">Alert threshold ({{ formGroup.get('umbral')?.value }}°C)</p>
+    <p-slider
+      class="flex justify-center"
+      formControlName="umbral"
+      orientation="vertical"
+      [min]="formGroup.get('range')?.value[0]"
+      [max]="formGroup.get('range')?.value[1]"
+      (onChange)="enableButton()"
+    />
+
+    <p-button styleClass="!mt-4" (click)="acceptChanges()" label="Save changes" [disabled]="isDisabled" />
+  </form>
+</p-dialog>

@@ -1,3 +1,3 @@
 export const environment = {
-  apiUrl: 'https://groweasy.azurewebsites.net/api/v1'
+  apiUrl: 'https://original-kellsie-groweasy-a06512fa.koyeb.app'
 };

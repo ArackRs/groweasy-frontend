@@ -36,16 +36,17 @@
       </div>
 
       <p-button
-        label="Sign up" type="submit" styleClass="mt-4"
-        [loading]="loadingSignUp"
+        label="Sign In" type="submit" styleClass="mt-4"
+        [loading]="isLoading"
         [disabled]="form.invalid || isSubmitting"
-        [icon]="loadingSignUp ? 'pi pi-spin pi-spinner' : 'pi pi-angle-right'"
-        [iconPos]="loadingSignUp ? 'left' : 'right'" />
+        [icon]="isLoading ? 'pi pi-spin pi-spinner' : 'pi pi-angle-right'"
+        [iconPos]="isLoading ? 'left' : 'right'" />
     </form>
   </ng-container>
 
   <ng-container footer>
     <span class="small-text log-in-redirect">Don’t have an account yet?
-      <a routerLink="/register" class="underline font-medium text-green-600">Sign up</a></span>
+      <a routerLink="/register" class="underline font-medium text-secondary">Sign up</a>
+    </span>
   </ng-container>
 </app-auth-form>

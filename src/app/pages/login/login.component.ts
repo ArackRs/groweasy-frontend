@@ -1,54 +1,42 @@
 import {Component} from '@angular/core';
 import {FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule} from '@angular/forms';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import {MatButtonToggle, MatButtonToggleGroup} from '@angular/material/button-toggle';
-import {MatRadioButton} from '@angular/material/radio';
 import {Router, RouterLink} from '@angular/router';
-import {SignIn} from '../../model/sign-in';
+import {SignIn} from '../../models/sign-in';
 import {AuthService} from '../../services/auth.service';
 import {FloatLabel} from 'primeng/floatlabel';
-import {NgClass, NgIf} from '@angular/common';
+import {NgIf} from '@angular/common';
 import {Password} from 'primeng/password';
 import {InputText} from 'primeng/inputtext';
 import {Button} from 'primeng/button';
 import {AuthFormComponent} from '../../layouts/auth-form/auth-form.component';
+import {MessageService} from 'primeng/api';
 
 @Component({
     selector: 'app-login',
   imports: [
     ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    MatIconModule,
-    MatButtonToggle,
-    MatRadioButton,
-    MatButtonToggleGroup,
     RouterLink,
     FloatLabel,
     FormsModule,
     NgIf,
-    NgClass,
     Password,
     InputText,
     Button,
-    AuthFormComponent
+    AuthFormComponent,
   ],
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
   form: FormGroup;
-  loadingSignUp: boolean = false;
+  isLoading: boolean = false;
   isSubmitting: boolean = false;
 
   constructor(
+    private readonly messageService: MessageService,
     private readonly authService: AuthService,
     private readonly formBuilder: FormBuilder,
-    private readonly router: Router
+    private readonly router: Router,
   ) {
     this.form = this.formBuilder.group({
       username: ['', Validators.required],
@@ -57,6 +45,8 @@ export class LoginComponent {
   }
 
   public onSubmit(): void {
+    this.hidePasswordOverlay();
+    this.isLoading = true;
     if (this.form.valid) {
       const credentials: SignIn = {
         username: this.form.value.username,
@@ -65,14 +55,23 @@ export class LoginComponent {
 
       this.authService.signIn(credentials).subscribe({
         next: () => {
-          this.router.navigate(['/home']).then(r => console.log('Redirection a /home:', r));
+          this.router.navigate(['/dashboard']).then(r => console.log('Redirection a /home:', r));
+          this.isLoading = false;
         },
-        error: (error) => {
-          console.error('Error al iniciar sesión:', error);
+        error: () => {
+          this.isLoading = false;
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error al iniciar sesión' });
         }
       });
     } else {
       console.error('Formulario no válido');
+    }
+  }
+
+  hidePasswordOverlay() {
+    const passwordOverlay = document.querySelector('.p-password-overlay') as HTMLElement;
+    if (passwordOverlay) {
+      passwordOverlay.style.display = 'none';
     }
   }
 }

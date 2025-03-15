@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {ApiBaseService} from "./api-base.service";
 import {HttpClient} from "@angular/common/http";
 import {catchError, Observable, retry} from "rxjs";
-import {User} from "../model/user";
+import {User} from "../models/user";
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +28,6 @@ export class UserService extends ApiBaseService<User>{
   }
 
   public getUsername(): string {
-    return localStorage.getItem('username') ?? 'No hay pipipi';
+    return localStorage.getItem('username') ?? 'username';
   }
 }

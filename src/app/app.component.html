@@ -1,1 +1,7 @@
-<router-outlet></router-outlet>
+@if (isSleeping) {
+  <div class="w-full h-screen fixed inset-0 grid place-content-center bg-black/70">
+    <p-progress-spinner strokeWidth="8" fill="transparent" animationDuration=".5s" [style]="{ width: '50px', height: '50px' }" />
+  </div>
+} @else {
+  <router-outlet></router-outlet>
+}

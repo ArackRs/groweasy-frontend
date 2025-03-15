@@ -65,7 +65,11 @@
       </div>
 
       <!-- Submit Button -->
-      <p-button label="Sign up" type="submit" styleClass="mt-4" [loading]="loadingSignUp" [disabled]="form.invalid || isSubmitting" [icon]="loadingSignUp ? 'pi pi-spin pi-spinner' : 'pi pi-user-plus'" [iconPos]="loadingSignUp ? 'left' : 'right'" />
+      <p-button label="Sign up" type="submit" styleClass="mt-4"
+                [loading]="isLoading"
+                [disabled]="form.invalid || isSubmitting"
+                [icon]="isLoading ? 'pi pi-spin pi-spinner' : 'pi pi-user-plus'"
+                [iconPos]="isLoading ? 'left' : 'right'" />
     </form>
   </ng-container>
 

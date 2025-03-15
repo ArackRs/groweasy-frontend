@@ -16,7 +16,7 @@ import { Router, RouterModule } from '@angular/router';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import {MatOption, MatSelect} from '@angular/material/select';
 import {AuthService} from '../../services/auth.service';
-import {SignUp} from '../../model/sign-up';
+import {SignUp} from '../../models/sign-up';
 import {FloatLabel} from 'primeng/floatlabel';
 import {Button} from 'primeng/button';
 import {InputText} from 'primeng/inputtext';
@@ -24,6 +24,7 @@ import {Password} from 'primeng/password';
 import {AuthFormComponent} from '../../layouts/auth-form/auth-form.component';
 import {DropdownModule} from 'primeng/dropdown';
 import {Select} from 'primeng/select';
+import {MessageService} from 'primeng/api';
 
 @Component({
     selector: 'app-register',
@@ -48,7 +49,7 @@ import {Select} from 'primeng/select';
 })
 export class RegisterComponent {
   form: FormGroup;
-  loadingSignUp: boolean = false;
+  isLoading: boolean = false;
   isSubmitting: boolean = false;
   roles = [
     { label: 'Agricultor Experimentado', value: 'EXPERT' },
@@ -56,9 +57,10 @@ export class RegisterComponent {
   ];
 
   constructor(
-    private formBuilder: FormBuilder,
-    private authService: AuthService,
-    private router: Router
+    private readonly formBuilder: FormBuilder,
+    private readonly authService: AuthService,
+    private readonly messageService: MessageService,
+    private readonly router: Router
   ) {
     this.form = this.formBuilder.group({
       firstname: ['', Validators.required],
@@ -76,7 +78,7 @@ export class RegisterComponent {
     }
 
     this.isSubmitting = true;
-    this.loadingSignUp = true;
+    this.isLoading = true;
 
     const register: SignUp = {
       firstName: this.form.value.firstname,
@@ -90,12 +92,13 @@ export class RegisterComponent {
 
     this.authService.signUp(register).subscribe({
       next: () => {
-        this.router.navigate(['/home']).then(() => console.log('Registro exitoso, redirigiendo...'));
+        this.router.navigate(['/dashboard']).then(() => console.log('Registro exitoso, redirigiendo...'));
       },
       error: (error) => {
         console.error('Error en el registro:', error);
         this.isSubmitting = false;
-        this.loadingSignUp = false;
+        this.isLoading = false;
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error al iniciar sesión' });
       }
     });
   }

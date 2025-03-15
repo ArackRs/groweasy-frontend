@@ -1,0 +1,17 @@
+button {
+  @apply w-full rounded-lg px-2 py-2 flex items-center text-sm font-medium;
+}
+button.active {
+  @apply bg-white/30;
+}
+button:not(.active):hover {
+  @apply bg-white/15;
+}
+
+::ng-deep.p-button-text {
+  /*@apply text-primary;*/
+}
+
+::ng-deep.p-inputicon {
+  /*color: black;*/
+}

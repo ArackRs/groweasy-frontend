@@ -1,0 +1,42 @@
+<app-page-view
+  title="Sensores IOT"
+  subtitle="Monitorea el estado de tus sensores"
+>
+  <ng-container content>
+    <div class="w-full h-full template-grid place-content-center my-8">
+      <!-- Card del sensor -->
+      @for (sensor of connectedDevice?.sensors; track sensor.id) {
+        <p-card *ngIf="value == 100" styleClass="!overflow-hidden cursor-pointer" (click)="toggleModal(sensor)">
+          <ng-template #header>
+            <img *ngIf="sensor.type === 'TEMPERATURE'" src="https://image.made-in-china.com/202f0j00IjcbFliylYkW/Handheld-Agriculture-Soil-Moisture-Temperature-and-Moisture-Sensor-for-Agriculture-Greenhouse.webp"
+                 alt="Sensor de Temperatura" class="w-full aspect-video img">
+            <img *ngIf="sensor.type === 'HUMIDITY'" src="https://m.media-amazon.com/images/I/41gs1jMVs6S._AC_UF1000,1000_QL80_.jpg"
+                 alt="Sensor de Humedad" class="w-full aspect-video">
+            <img *ngIf="sensor.type === 'LUMINOSITY'" src="https://www.kusitest.pe/sites/default/files/tool/image/Medidor%20de%20pH%20de%20suelo%2C%20medici%C3%B3n%20de%20temperatura%20y%20humedad%20de%20suelo%2C%20peachimetro%20de%20suelo%20para%20agricultura%20precio%20en%20Peru%2C%20PH-328.%20-Kusitest%20-7.jpg"
+                 alt="Sensor de PH" class="w-full aspect-video">
+          </ng-template>
+
+          <ng-template #title>{{ sensor.type }}</ng-template>
+          <ng-template #subtitle>{{ sensor.status }}</ng-template>
+        </p-card>
+      } @empty {
+        <div class="grid place-items-center">
+          <p class="text-gray-500 mb-4 text-center">No hay sensores disponibles</p>
+          <p-button label="Conectar Dispositivo" rounded raised (onClick)="connectDevice()" />
+        </div>
+      }
+      <div class="flex justify-center" *ngIf="isLoading">
+        <p-progress-spinner strokeWidth="8" fill="transparent" animationDuration=".5s" [style]="{ width: '50px', height: '50px' }" />
+      </div>
+    </div>
+    <p-progressbar *ngIf="isLoading" [value]="value" />
+  </ng-container>
+</app-page-view>
+
+<app-connect-device />
+
+<app-configure-sensor
+  [visible]="showModal"
+  [sensor]="selectedSensor"
+  (close)="toggleModal(selectedSensor)"
+/>
