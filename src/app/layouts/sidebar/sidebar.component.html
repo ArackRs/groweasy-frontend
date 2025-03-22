@@ -19,14 +19,32 @@
       <i class="pi pi-objects-column"></i>
       <span class="duration-500" [ngClass]="reduce ? 'pl-0 w-0 opacity-0' : 'pl-2 w-min opacity-1'">Dashboard</span>
     </button>
-    <button class="btn" routerLink="/analysis" routerLinkActive="active">
-      <i class="pi pi-chart-bar"></i>
-      <span class="duration-500" [ngClass]="reduce ? 'pl-0 w-0 opacity-0' : 'pl-2 w-min opacity-1'">Performance</span>
-    </button>
+
     <button class="btn" routerLink="/store" routerLinkActive="active">
-      <i class="pi pi-cog"></i>
+      <i class="pi pi-shop"></i>
       <span class="duration-500" [ngClass]="reduce ? 'pl-0 w-0 opacity-0' : 'pl-2 w-min opacity-1'">Store</span>
     </button>
+
+    @if (connectedDevice) {
+      <p-card (click)="connectDevice()" class="">
+        <ng-template #title>
+          <span class="text-sm">Device location: {{ connectedDevice.location }}</span>
+        </ng-template>
+        <ng-template #subtitle>
+          <span class="text-xs">MAC: {{ connectedDevice.macAddress }}</span>
+        </ng-template>
+        <p class="text-primary-prime text-xs uppercase">Connected</p>
+      </p-card>
+    } @else {
+      <p-card routerLink="/dashboard" class="cursor-pointer">
+        <ng-template #title>
+          <span class="text-xs">Dispositivo no conectado!!</span>
+        </ng-template>
+        <ng-template #subtitle>
+          <span class="text-xs">Conecta un dispositivo para ver su información.</span>
+        </ng-template>
+      </p-card>
+    }
   </div>
 
   <button class="btn" (click)="logOut()">

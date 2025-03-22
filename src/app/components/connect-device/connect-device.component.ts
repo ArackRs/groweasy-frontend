@@ -53,6 +53,24 @@ export class ConnectDeviceComponent implements OnInit {
   loadDevices(): void {
     console.log('Cargando dispositivos...');
     this.isLoading = true;
+
+    // this.deviceService.getAllDevice().subscribe({
+    //   next: (devices: Device[]): void => {
+    //     this.devices = devices.map(device => ({ ...device, selected: false }));
+    //     console.log('Dispositivos cargados:', this.devices);
+    //     this.isLoading = false;
+    //     if (this.devices.length === 0) {
+    //       this.messageService.add({ severity: 'info', summary: 'Info', detail: 'No se encontraron dispositivos' });
+    //     } else {
+    //       this.messageService.add({ severity: 'success', summary: 'Éxito', detail: `Dispositivos cargados correctamente: ${this.devices.length}` });
+    //     }
+    //   },
+    //   error: (error) => {
+    //     console.error('Error al obtener los dispositivos:', error);
+    //     this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error al obtener los dispositivos' });
+    //   }
+    // });
+
     this.deviceService.getAll().subscribe({
       next: (devices: Device[]): void => {
         this.devices = devices.map(device => ({ ...device, selected: false }));

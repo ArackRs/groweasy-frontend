@@ -1,0 +1,9 @@
+.bg-linear-gradient-temperature {
+  @apply bg-gradient-to-b from-black via-black to-sensor-temperature/50;
+}
+.bg-linear-gradient-humidity {
+  @apply bg-gradient-to-b from-black via-black to-sensor-humidity/50;
+}
+.bg-linear-gradient-luminosity {
+  @apply bg-gradient-to-b from-black via-black to-sensor-luminosity/50;
+}

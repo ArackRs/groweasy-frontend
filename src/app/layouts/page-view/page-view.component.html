@@ -1,8 +1,8 @@
 <div class="w-full h-screen flex overflow-hidden">
   <app-sidebar />
 
-  <main class="flex flex-col gap-8 w-full h-full p-8  overflow-y-auto">
-    <header class="flex justify-between flex-wrap gap-4">
+  <main class="flex flex-col gap-8 w-full h-full p-8 overflow-y-auto">
+    <header class="flex justify-between flex-wrap gap-4 hidden">
       <div class="flex items-center gap-4">
         <p-image src="logo.png" alt="avatar" class="w-24 md:w-36 rounded-full overflow-hidden object-cover" />
 
@@ -13,27 +13,6 @@
           </span>
         </div>
       </div>
-
-      @if (connectedDevice) {
-        <p-card (click)="toggleDevice()">
-          <ng-template #title>
-            <span class="text-lg">Device location: {{ connectedDevice.location }}</span>
-          </ng-template>
-          <ng-template #subtitle>
-            <span class="text-sm">MAC: {{ connectedDevice.macAddress }}</span>
-          </ng-template>
-          <p class="text-primary-prime text-sm uppercase">Connected</p>
-        </p-card>
-      } @else {
-        <p-card>
-          <ng-template #title>
-            <span class="text-lg">Dispositivo no conectado!!</span>
-          </ng-template>
-          <ng-template #subtitle>
-            <span class="text-sm">Conecta un dispositivo para ver su información.</span>
-          </ng-template>
-        </p-card>
-      }
     </header>
 
     <section class="h-full flex flex-col">

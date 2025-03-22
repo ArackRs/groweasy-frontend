@@ -81,3 +81,7 @@ h2 {
   gap: 20px;
   /*justify-content: center;*/
 }
+
+.card {
+  @apply bg-black/50 p-8 rounded-2xl space-y-8 h-full;
+}

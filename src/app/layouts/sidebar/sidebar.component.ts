@@ -4,6 +4,9 @@ import {Button} from 'primeng/button';
 import {NgClass} from '@angular/common';
 import {Image} from 'primeng/image';
 import {AuthService} from '../../services/auth.service';
+import {Card} from 'primeng/card';
+import {Device} from '../../models/device';
+import {DeviceService} from '../../services/device.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -12,16 +15,19 @@ import {AuthService} from '../../services/auth.service';
     RouterLinkActive,
     Button,
     NgClass,
-    Image
+    Image,
+    Card
   ],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css'
 })
 export class SidebarComponent {
   reduce: boolean = false;
+  connectedDevice: Device | undefined = localStorage.getItem('connectedDevice') ? JSON.parse(localStorage.getItem('connectedDevice') as string) : null;
 
   constructor(
-    private readonly authService: AuthService
+    private readonly authService: AuthService,
+    private readonly deviceService: DeviceService
   ) {
   }
 
@@ -41,5 +47,9 @@ export class SidebarComponent {
         alert('No se pudo cerrar la sesión. Intente de nuevo más tarde.');
       }
     });
+  }
+
+  connectDevice(): void {
+    this.deviceService.emitConnectDevice$(true);
   }
 }

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {Device} from '../models/device';
 import {ApiBaseService} from './api-base.service';
 import {HttpClient} from '@angular/common/http';
-import {Observable, retry, Subject} from 'rxjs';
+import {Observable, retry, Subject, take} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 
 @Injectable({
@@ -34,5 +34,8 @@ export class DeviceService extends ApiBaseService<Device> {
       .pipe(retry(2), catchError(this.handleError));
   }
 
+  public getAllDevice(): Observable<Device[]> {
+    return this.http.get<Device[]>(`/assets/data/device.json`).pipe(take(1));
+  }
 
 }
