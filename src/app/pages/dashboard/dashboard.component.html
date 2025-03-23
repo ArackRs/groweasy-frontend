@@ -1,7 +1,7 @@
 <app-page-view>
   <ng-container content>
     @if (connectedDevice && valueBar === 100) {
-      <div class="grid grid-flow-row-dense grid-cols-3 grid-rows-2 gap-4 h-full">
+      <div class="grid grid-flow-row-dense grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 h-full">
 
         @for (sensor of connectedDevice?.sensors; track sensor.id) {
           <app-sensor-card [sensor]="sensor" />

@@ -26,7 +26,7 @@
     </button>
 
     @if (connectedDevice) {
-      <p-card (click)="connectDevice()" class="">
+      <p-card (click)="connectDevice()" *ngIf="!reduce">
         <ng-template #title>
           <span class="text-sm">Device location: {{ connectedDevice.location }}</span>
         </ng-template>
@@ -35,6 +35,9 @@
         </ng-template>
         <p class="text-primary-prime text-xs uppercase">Connected</p>
       </p-card>
+      <button (click)="connectDevice()" *ngIf="reduce" class="btn !bg-primary-prime">
+        <i class="pi pi-wifi"></i>
+      </button>
     } @else {
       <p-card routerLink="/dashboard" class="cursor-pointer">
         <ng-template #title>
@@ -44,6 +47,9 @@
           <span class="text-xs">Conecta un dispositivo para ver su información.</span>
         </ng-template>
       </p-card>
+      <button routerLink="/dashboard" class="btn !bg-severity-error" *ngIf="reduce">
+        <i class="pi pi-wifi"></i>
+      </button>
     }
   </div>
 

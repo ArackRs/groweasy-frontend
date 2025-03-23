@@ -1,7 +1,7 @@
-import {Component, HostListener, ViewChild} from '@angular/core';
+import {Component, HostListener} from '@angular/core';
 import {RouterLink, RouterLinkActive} from "@angular/router";
 import {Button} from 'primeng/button';
-import {NgClass} from '@angular/common';
+import {NgClass, NgIf} from '@angular/common';
 import {Image} from 'primeng/image';
 import {AuthService} from '../../services/auth.service';
 import {Card} from 'primeng/card';
@@ -16,7 +16,8 @@ import {DeviceService} from '../../services/device.service';
     Button,
     NgClass,
     Image,
-    Card
+    Card,
+    NgIf
   ],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css'
