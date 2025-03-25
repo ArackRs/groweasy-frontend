@@ -79,7 +79,8 @@ export class ConfigureSensorComponent implements OnInit, OnChanges {
       threshold: this.alertThreshold,
       type: this.sensor?.type
     }
-    this.sensorService.updateSensorConfig(1, config).subscribe({
+    const index: number = this.sensor?.id ?? 0;
+    this.sensorService.updateSensorConfig(index, config).subscribe({
       next: (sensor) => {
         this.showDialog();
         this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Sensor actualizado correctamente' });

@@ -77,5 +77,6 @@ export class AuthService extends ApiBaseService<Auth> {
   private clearCredentials(): void {
     localStorage.removeItem('token');
     localStorage.removeItem('username');
+    localStorage.clear();
   }
 }
