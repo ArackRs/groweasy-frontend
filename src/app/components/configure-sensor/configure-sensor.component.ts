@@ -1,4 +1,4 @@
-import {Component, Input, Output, EventEmitter, OnInit} from '@angular/core';
+import {Component, Input, Output, EventEmitter, OnInit, OnChanges, SimpleChanges} from '@angular/core';
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {SensorService} from '../../services/sensor.service';
 import {Button} from "primeng/button";
@@ -19,7 +19,7 @@ import {Slider} from 'primeng/slider';
     templateUrl: './configure-sensor.component.html',
     styleUrl: './configure-sensor.component.css'
 })
-export class ConfigureSensorComponent implements OnInit {
+export class ConfigureSensorComponent implements OnInit, OnChanges {
   @Input() visible: boolean = false;
   @Output() close: EventEmitter<void> = new EventEmitter<void>();
   @Input() sensor: Sensor | null = null;
@@ -36,21 +36,31 @@ export class ConfigureSensorComponent implements OnInit {
   ) {
     this.formGroup = this.formBuilder.group({
       range: [[0, 30]],
-      umbral: [8]
+      umbral: [15]
     })
   }
 
-  ngOnInit() {
-    if (this.sensor?.config) {
-      this.formGroup.setValue({
-        range: [this.sensor.config.min, this.sensor.config.max],
-        umbral: this.sensor.config.threshold
-      });
+  ngOnInit(): void {
+    this.updateConfig();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['visible']) {
+      this.updateConfig();
     }
   }
 
   showDialog(){
     this.close.emit();
+
+  }
+
+  updateConfig(){
+    if (this.sensor?.config) {
+      this.formGroup.get('range')?.setValue([this.sensor.config.min, this.sensor.config.max]);
+      this.formGroup.get('umbral')?.setValue(this.sensor.config.threshold);
+    }
+    console.log(this.formGroup.value);
   }
 
   acceptChanges(){

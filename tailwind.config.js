@@ -12,7 +12,7 @@ module.exports = {
         },
         secondary: {
           DEFAULT: '#2C3E50FF',
-          soft: '#405a73',
+          soft: '#4c6b8a',
         },
         severity: {
           success: '#10B981',

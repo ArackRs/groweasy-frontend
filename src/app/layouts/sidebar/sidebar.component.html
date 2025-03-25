@@ -20,26 +20,25 @@
       <span class="duration-500" [ngClass]="reduce ? 'pl-0 w-0 opacity-0' : 'pl-2 w-min opacity-1'">Dashboard</span>
     </button>
 
-    <button class="btn" routerLink="/store" routerLinkActive="active">
-      <i class="pi pi-shop"></i>
-      <span class="duration-500" [ngClass]="reduce ? 'pl-0 w-0 opacity-0' : 'pl-2 w-min opacity-1'">Store</span>
+    <button class="btn" routerLink="/profile" routerLinkActive="active">
+      <i class="pi pi-user"></i>
+      <span class="duration-500" [ngClass]="reduce ? 'pl-0 w-0 opacity-0' : 'pl-2 w-min opacity-1'">Profile</span>
     </button>
 
     @if (connectedDevice) {
-      <p-card (click)="connectDevice()" *ngIf="!reduce">
+      <p-card class="w-full" (click)="connectDevice()" *ngIf="!reduce">
         <ng-template #title>
-          <span class="text-sm">Device location: {{ connectedDevice.location }}</span>
+          <span class="text-sm text-gray-300">MAC: {{ connectedDevice.macAddress }}</span>
         </ng-template>
         <ng-template #subtitle>
-          <span class="text-xs">MAC: {{ connectedDevice.macAddress }}</span>
+          <span class="text-primary-prime text-xs uppercase">Connected</span>
         </ng-template>
-        <p class="text-primary-prime text-xs uppercase">Connected</p>
       </p-card>
       <button (click)="connectDevice()" *ngIf="reduce" class="btn !bg-primary-prime">
         <i class="pi pi-wifi"></i>
       </button>
     } @else {
-      <p-card routerLink="/dashboard" class="cursor-pointer">
+      <p-card routerLink="/dashboard" class="w-full cursor-pointer" *ngIf="!reduce">
         <ng-template #title>
           <span class="text-xs">Dispositivo no conectado!!</span>
         </ng-template>
@@ -53,8 +52,10 @@
     }
   </div>
 
-  <button class="btn" (click)="logOut()">
+  <button class="btn" (click)="logOut($event)">
     <i class="pi pi-sign-out"></i>
     <span class="duration-500 whitespace-nowrap" [ngClass]="reduce ? 'pl-0 w-0 opacity-0' : 'pl-2 w-min opacity-1'">Log Out</span>
   </button>
+  <p-toast />
 </nav>
+<p-confirmpopup />

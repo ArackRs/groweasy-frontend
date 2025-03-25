@@ -3,29 +3,21 @@
     @if (connectedDevice && valueBar === 100) {
       <div class="grid grid-flow-row-dense grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 h-full">
 
-        @for (sensor of connectedDevice?.sensors; track sensor.id) {
+        @for (sensor of connectedDevice.sensors; track sensor.id) {
           <app-sensor-card [sensor]="sensor" />
         }
 
-        <app-metric-card [doughnutChartData]="doughnutChartData" />
+        <app-metric-card [doughnutChartData]="chartData" />
 
         <div class="card">
           <div class="flex justify-between">
             <h3 class="text-lg font-medium">Graphic</h3>
             <i class="pi pi-chart-pie"></i>
           </div>
-          <div>
-            <canvas
-              baseChart
-              [data]="doughnutChartData"
-              [type]="doughnutChartType"
-              [options]="chartOptions">
-            </canvas>
-          </div>
+          <p-chart type="doughnut" [data]="chartData" [options]="chartOptions" class="block w-full" />
         </div>
 
         <app-alert-card [alerts]="alerts" />
-
       </div>
 
     } @else {

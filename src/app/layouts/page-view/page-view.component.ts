@@ -4,17 +4,11 @@ import {Device} from '../../models/device';
 import {User} from '../../models/user';
 import {UserService} from '../../services/user.service';
 import {DeviceService} from '../../services/device.service';
-import {Image} from 'primeng/image';
-import {Chip} from 'primeng/chip';
-import {Card} from 'primeng/card';
 
 @Component({
   selector: 'app-page-view',
   imports: [
     SidebarComponent,
-    Image,
-    Chip,
-    Card,
   ],
   templateUrl: './page-view.component.html',
   styleUrl: './page-view.component.css'
