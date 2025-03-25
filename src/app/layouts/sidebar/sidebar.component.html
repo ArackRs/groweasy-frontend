@@ -1,0 +1,61 @@
+<nav
+  class="min-w-[15rem] w-[15rem] h-screen bg-black p-4 overflow-hidden flex flex-col items-center duration-500"
+  [ngClass]="{ '!min-w-[3.5rem] !w-[3.5rem] !px-3': reduce }"
+>
+  <div class="w-full flex justify-between items-center mb-8">
+    <div routerLink="/" class="logo flex items-center cursor-pointer">
+      <p-image src="logo.png" [preview]="false" alt="Logo Groweasy" width="32" height="32" />
+      <span id="brand" class="text-2xl font-bold pl-2" [ngClass]="{ 'hidden': reduce }">Groweasy</span>
+    </div>
+    <p-button class="pb-1"
+              (onClick)="reduce = !reduce" id="btn-bars" styleClass="!bg-primary !text-white !border-none !w-6 !h-6"
+              [icon]="reduce ? 'pi pi-angle-double-right' : 'pi pi-angle-double-left'" size="small" [rounded]="true"
+              [ngClass]="{ 'absolute left-[3.1rem] z-50': reduce }"
+    />
+  </div>
+
+  <div class="w-full h-full flex flex-col items-start gap-4">
+    <button class="btn" routerLink="/dashboard" routerLinkActive="active">
+      <i class="pi pi-objects-column"></i>
+      <span class="duration-500" [ngClass]="reduce ? 'pl-0 w-0 opacity-0' : 'pl-2 w-min opacity-1'">Dashboard</span>
+    </button>
+
+    <button class="btn" routerLink="/profile" routerLinkActive="active">
+      <i class="pi pi-user"></i>
+      <span class="duration-500" [ngClass]="reduce ? 'pl-0 w-0 opacity-0' : 'pl-2 w-min opacity-1'">Profile</span>
+    </button>
+
+    @if (connectedDevice) {
+      <p-card class="w-full" (click)="connectDevice()" *ngIf="!reduce">
+        <ng-template #title>
+          <span class="text-sm text-gray-300">MAC: {{ connectedDevice.macAddress }}</span>
+        </ng-template>
+        <ng-template #subtitle>
+          <span class="text-primary-prime text-xs uppercase">Connected</span>
+        </ng-template>
+      </p-card>
+      <button (click)="connectDevice()" *ngIf="reduce" class="btn !bg-primary-prime">
+        <i class="pi pi-wifi"></i>
+      </button>
+    } @else {
+      <p-card routerLink="/dashboard" class="w-full cursor-pointer" *ngIf="!reduce">
+        <ng-template #title>
+          <span class="text-xs">Dispositivo no conectado!!</span>
+        </ng-template>
+        <ng-template #subtitle>
+          <span class="text-xs">Conecta un dispositivo para ver su información.</span>
+        </ng-template>
+      </p-card>
+      <button routerLink="/dashboard" class="btn !bg-severity-error" *ngIf="reduce">
+        <i class="pi pi-wifi"></i>
+      </button>
+    }
+  </div>
+
+  <button class="btn" (click)="logOut($event)">
+    <i class="pi pi-sign-out"></i>
+    <span class="duration-500 whitespace-nowrap" [ngClass]="reduce ? 'pl-0 w-0 opacity-0' : 'pl-2 w-min opacity-1'">Log Out</span>
+  </button>
+  <p-toast />
+</nav>
+<p-confirmpopup />

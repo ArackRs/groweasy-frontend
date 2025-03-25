@@ -3,9 +3,9 @@ import { ApiBaseService } from "./api-base.service";
 import { HttpClient } from "@angular/common/http";
 import { catchError, Observable, retry } from "rxjs";
 import {tap} from "rxjs/operators";
-import {Auth} from "../model/auth";
-import {SignIn} from "../model/sign-in";
-import {SignUp} from "../model/sign-up";
+import {Auth} from "../models/auth";
+import {SignIn} from "../models/sign-in";
+import {SignUp} from "../models/sign-up";
 
 @Injectable({
   providedIn: 'root'
@@ -61,7 +61,7 @@ export class AuthService extends ApiBaseService<Auth> {
   public handleSessionExpired(): void {
     this.clearCredentials();
     alert('Session has expired. You will be redirected to the login page.');
-    window.location.href = '/landing';
+    window.location.href = '/';
   }
   public getToken(): string | null {
     return localStorage.getItem('token');
@@ -77,5 +77,6 @@ export class AuthService extends ApiBaseService<Auth> {
   private clearCredentials(): void {
     localStorage.removeItem('token');
     localStorage.removeItem('username');
+    localStorage.clear();
   }
 }

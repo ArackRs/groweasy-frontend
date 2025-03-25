@@ -1,0 +1,22 @@
+<div class="card">
+  <div class="flex justify-between">
+    <h3 class="text-lg font-medium">Metrics</h3>
+    <i class="pi pi-gauge"></i>
+  </div>
+
+  <p-card styleClass="block !mt-8" *ngFor="let label of doughnutChartData.labels; let i = index">
+    <div class="flex justify-between gap-8">
+      <div class="flex flex-col gap-1">
+        <span class="text-surface-500 dark:text-surface-400 text-sm">{{ label }}</span>
+        <span class="font-bold text-lg">{{ doughnutChartData.datasets[0].data[i] }}°C</span>
+      </div>
+      <i class="pi pi-power-off p-3 rounded-full h-min"
+          [ngClass]="{
+            'bg-sensor-temperature': label === 'Temperature',
+            'bg-sensor-humidity': label === 'Humidity',
+            'bg-sensor-luminosity': label === 'Luminosity'
+          }"
+      ></i>
+    </div>
+  </p-card>
+</div>

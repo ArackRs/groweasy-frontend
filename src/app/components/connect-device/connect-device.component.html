@@ -1,0 +1,25 @@
+<p-dialog header="Dispositivos IOT" [(visible)]="visible" [modal]="true" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
+          [style]="{ width: '30vw' }" [draggable]="false" [resizable]="false">
+  <div class="text-start mb-8">
+    @if (devices.length > 0) {
+      <div *ngFor="let device of devices" class="flex justify-between items-center bg-white/10 w-full p-4">
+        <label [for]="device?.macAddress" class="ml-2">Device: Wokwi-ESP32-GrowEasy{{ device?.id }} <br> Location: {{ device?.location }} <br> MAC: {{ device?.macAddress }} </label>
+        <p-checkbox [binary]="true" (onChange)="updateDisabledState()"
+                    [inputId]="device?.macAddress" name="group" [value]="device" [(ngModel)]="device.selected" />
+      </div>
+    } @else {
+      <p>No hay dispositivos encendidos.</p>
+    }
+    <div *ngIf="isLoading" class="flex items-center gap-2 mt-8">
+      <p-progress-spinner strokeWidth="4" fill="transparent" animationDuration=".5s" [style]="{ width: '20px', height: '20px' }" />
+      <span class="text-secondary">Loading... </span>
+    </div>
+  </div>
+
+  <div class="text-start">
+    <p-button styleClass="!mt-2 !mr-2" (click)="loadDevices()" label="Update" [disabled]="!isDisabled" severity="contrast" />
+    <p-button styleClass="!mt-2" (click)="connectDevice()" label="Connect" [disabled]="isDisabled" />
+  </div>
+</p-dialog>
+
+<p-toast />

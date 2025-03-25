@@ -1,0 +1,91 @@
+[
+  {
+    "id": 1,
+    "macAddress": "00:1A:2B:3C:4D:5E",
+    "status": "active",
+    "location": "Office",
+    "sensors": [
+      {
+        "id": 1,
+        "type": "Temperature",
+        "status": "active",
+        "deviceId": 1,
+        "config": {
+          "id": 1,
+          "min": -10,
+          "max": 50,
+          "threshold": 30
+        }
+      },
+      {
+        "id": 2,
+        "type": "Humidity",
+        "status": "inactive",
+        "deviceId": 1,
+        "config": {
+          "id": 2,
+          "min": 0,
+          "max": 100,
+          "threshold": 60
+        }
+      },
+      {
+        "id": 3,
+        "type": "Luminosity",
+        "status": "active",
+        "deviceId": 1,
+        "config": {
+          "id": 3,
+          "min": 0,
+          "max": 1000,
+          "threshold": 800
+        }
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "macAddress": "00:1A:2B:3C:4D:5F",
+    "status": "inactive",
+    "location": "Living Room",
+    "sensors": [
+      {
+        "id": 4,
+        "type": "Temperature",
+        "status": "active",
+        "deviceId": 2,
+        "config": {
+          "id": 4,
+          "min": -10,
+          "max": 50,
+          "threshold": 30
+        }
+      },
+      {
+        "id": 5,
+        "type": "Humidity",
+        "status": "active",
+        "deviceId": 2,
+        "config": {
+          "id": 5,
+          "min": 0,
+          "max": 100,
+          "threshold": 60
+        }
+      },
+      {
+        "id": 6,
+        "type": "Luminosity",
+        "status": "active",
+        "deviceId": 2,
+        "config": {
+          "id": 6,
+          "min": 0,
+          "max": 1000,
+          "threshold": 800
+        }
+      }
+    ]
+  }
+
+]

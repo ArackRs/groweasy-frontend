@@ -1,0 +1,38 @@
+<app-page-view>
+  <ng-container content>
+    @if (connectedDevice && valueBar === 100) {
+      <div class="grid grid-flow-row-dense grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 h-full">
+
+        @for (sensor of connectedDevice.sensors; track sensor.id) {
+          <app-sensor-card [sensor]="sensor" />
+        }
+
+        <app-metric-card [doughnutChartData]="chartData" />
+
+        <div class="card">
+          <div class="flex justify-between">
+            <h3 class="text-lg font-medium">Graphic</h3>
+            <i class="pi pi-chart-pie"></i>
+          </div>
+          <p-chart type="doughnut" [data]="chartData" [options]="chartOptions" class="block w-full" />
+        </div>
+
+        <app-alert-card [alerts]="alerts" />
+      </div>
+
+    } @else {
+      <div class="grid place-content-center h-full">
+        @if (!isLoading) {
+          <p class="text-gray-500 mb-4 text-center">No hay sensores disponibles!</p>
+          <p-button class="mx-auto" label="Conectar Dispositivo" rounded raised (onClick)="connectDevice()" />
+        } @else {
+          <p-progress-spinner strokeWidth="8" fill="transparent" animationDuration=".5s" [style]="{ width: '50px', height: '50px' }" />
+        }
+      </div>
+    }
+
+    <p-progressbar *ngIf="isLoading" [value]="valueBar" />
+  </ng-container>
+</app-page-view>
+
+<app-connect-device />
