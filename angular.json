@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "AppIOTGrowEasy": {
+    "GrowEasyFrontend": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/app-iotgrow-easy",
+            "outputPath": "dist/groweasy-frontend",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -32,7 +32,6 @@
               }
             ],
             "styles": [
-              "@angular/material/prebuilt-themes/cyan-orange.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -71,10 +70,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "AppIOTGrowEasy:build:production"
+              "buildTarget": "GrowEasyFrontend:build:production"
             },
             "development": {
-              "buildTarget": "AppIOTGrowEasy:build:development"
+              "buildTarget": "GrowEasyFrontend:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -97,7 +96,6 @@
               }
             ],
             "styles": [
-              "@angular/material/prebuilt-themes/cyan-orange.css",
               "src/styles.css"
             ],
             "scripts": []
