@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule} from '@angular/forms';
-import {Router, RouterLink} from '@angular/router';
+import {ActivatedRoute, Router, RouterLink} from '@angular/router';
 import {SignIn} from '../../models/sign-in';
 import {AuthService} from '../../services/auth.service';
 import {FloatLabel} from 'primeng/floatlabel';
@@ -36,6 +36,7 @@ export class LoginComponent {
     private readonly messageService: MessageService,
     private readonly authService: AuthService,
     private readonly formBuilder: FormBuilder,
+    private readonly activatedRoute: ActivatedRoute,
     private readonly router: Router,
   ) {
     this.form = this.formBuilder.group({
@@ -55,7 +56,8 @@ export class LoginComponent {
 
       this.authService.signIn(credentials).subscribe({
         next: () => {
-          this.router.navigate(['/dashboard']).then(r => console.log('Redirection a /home:', r));
+          const returnUrl = this.activatedRoute.snapshot.queryParams['returnUrl'] || '/dashboard';
+          this.router.navigate([returnUrl]).then(r => console.log(`Redirección a ${returnUrl}:`, r));
           this.isLoading = false;
         },
         error: () => {
