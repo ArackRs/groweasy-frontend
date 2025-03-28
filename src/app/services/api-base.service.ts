@@ -9,7 +9,7 @@ import {environment} from '../../environments/environment.development';
 })
 export class ApiBaseService<T> {
 
-  basePath: string = `${environment.apiUrl}/api/v1`;
+  basePath: string = `${environment.apiUrl}`;
   resourceEndpoint: string = '/resources';
 
   httpOptions: { headers: HttpHeaders } = {

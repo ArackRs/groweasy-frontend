@@ -1,20 +1,13 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgIf } from '@angular/common';
 import {
   FormBuilder,
-  FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
 
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
 import { Router, RouterModule } from '@angular/router';
-import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-import {MatOption, MatSelect} from '@angular/material/select';
 import {AuthService} from '../../services/auth.service';
 import {SignUp} from '../../models/sign-up';
 import {FloatLabel} from 'primeng/floatlabel';
@@ -29,10 +22,6 @@ import {MessageService} from 'primeng/api';
 @Component({
     selector: 'app-register',
   imports: [
-    MatFormFieldModule,
-    MatInputModule,
-    MatIconModule,
-    MatButtonModule,
     ReactiveFormsModule,
     RouterModule,
     NgIf,

@@ -2,7 +2,7 @@ import {HttpEvent, HttpRequest, HttpHandlerFn, HttpErrorResponse} from '@angular
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { inject } from '@angular/core';
-import { AuthService } from './services/auth.service';
+import { AuthService } from '../services/auth.service';
 
 export function authInterceptor(req: HttpRequest<any>, next: HttpHandlerFn): Observable<HttpEvent<any>> {
   const authService = inject(AuthService);
